@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" type="image/jpeg" href="/assets/logo.jpg">
+  <link href="https://fonts.cdnfonts.com/css/eurostile" rel="stylesheet">          
+  <link href="https://fonts.cdnfonts.com/css/eurostile-extended" rel="stylesheet">
   <title>Login</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    background-color: #ffffff; 
+    font-family: sans-serif;
+    color:black;">
+<canvas id="bgCanvas"></canvas>
+<div id="loginpage" style="background-color:rgb(255, 255, 255);">
+  <div>
+    <h1>WatchStore</h1>
+    <h4>Login</h4><br>
 
-<h2>Login</h2>
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <input type="password" id="password" placeholder="Password"><br><br>
+    <button onclick="login()">Login</button>
+  </div>
+    
+</div>
 
-<input type="email" id="email" placeholder="Email"><br><br>
-<input type="password" id="password" placeholder="Password"><br><br>
-<button onclick="login()">Login</button>
 
 <script>
 async function login() {
