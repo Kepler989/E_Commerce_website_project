@@ -1,7 +1,9 @@
 //cart functionality
 let cart = JSON.parse(localStorage.getItem('watchCart')) || [];
 
-updateCartUI();
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartUI();
+});
 
 async function addToCart(name, price, image) {
 
@@ -17,12 +19,26 @@ async function addToCart(name, price, image) {
   const res = await fetch("http://localhost:5000/api/products");
   const products = await res.json();
 
-  const product = products.find(p => p.name === name);
+  const product = products.find(p => p.name.trim().toLowerCase() === name.trim().toLowerCase());
 
   if (!product) {
-    alert("Product not found");
-    return;
-  }
+
+  // fallback: still add locally
+  const cartItem = {
+    name,
+    price,
+    image
+  };
+
+  cart.push(cartItem);
+
+  localStorage.setItem('watchCart', JSON.stringify(cart));
+
+  updateCartUI();
+
+  alert("Added locally (backend product not found)");
+  return;
+}
 
   await fetch("http://localhost:5000/api/cart/add", {
     method: "POST",
@@ -35,6 +51,22 @@ async function addToCart(name, price, image) {
       quantity: 1
     })
   });
+
+  // ===== THIS PART WAS MISSING =====
+
+  const cartItem = {
+    name,
+    price,
+    image
+  };
+
+  cart.push(cartItem);
+
+  localStorage.setItem('watchCart', JSON.stringify(cart));
+
+  updateCartUI();
+
+  // ================================
 
   alert("Added to cart!");
 }
