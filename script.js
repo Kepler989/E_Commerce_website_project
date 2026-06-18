@@ -15,7 +15,7 @@ async function addToCart(name, price, image) {
     return;
   }
 
-  // Get products from backend to find correct ID
+
   const res = await fetch("http://localhost:5000/api/products");
   const products = await res.json();
 
@@ -23,7 +23,7 @@ async function addToCart(name, price, image) {
 
   if (!product) {
 
-  // fallback: still add locally
+
   const cartItem = {
     name,
     price,
@@ -52,7 +52,7 @@ async function addToCart(name, price, image) {
     })
   });
 
-  // ===== THIS PART WAS MISSING =====
+
 
   const cartItem = {
     name,
@@ -66,7 +66,7 @@ async function addToCart(name, price, image) {
 
   updateCartUI();
 
-  // ================================
+
 
   alert("Added to cart!");
 }
