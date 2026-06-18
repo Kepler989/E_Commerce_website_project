@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-// Error middleware MUST be after routes
+
 app.use(notFound);
 app.use(errorHandler);
 
